@@ -31,8 +31,8 @@ struct drawingView: View {
 
 struct DrawingView_Previews: PreviewProvider {
     
-    @State static var redLayer : [(xPoint: Double, yPoint: Double)] = [(-0.5, 0.5), (0.5, 0.5), (0.0, 0.0), (0.0, 1.0)]
-    @State static var blueLayer : [(xPoint: Double, yPoint: Double)] = [(-0.5, -0.5), (0.5, -0.5), (0.9, 0.0)]
+    @State static var redLayer : [(xPoint: Double, yPoint: Double)] = [(-5.0, 5.0), (5.0, 5.0), (0.0, 0.0), (0.0, 5.0)]
+    @State static var blueLayer : [(xPoint: Double, yPoint: Double)] = [(-5.0, -5.0), (5.0, -5.0), (4.5, 0.0)]
     
     static var previews: some View {
        
@@ -66,11 +66,11 @@ struct drawIntegral: Shape {
         
         for item in drawingPoints {
             
-            path.addRect(CGRect(x: item.xPoint*Double(scale)+Double(center.x), y: item.yPoint*Double(scale)+Double(center.y), width: 1.0 , height: 1.0))
+            path.addRect(CGRect(x: item.xPoint*Double(scale)+Double(center.x), y: item.yPoint*Double(scale)+Double(center.y), width: 5.0, height: 5.0 ))
+            
             
         }
-
-
+        
         return (path)
     }
 }

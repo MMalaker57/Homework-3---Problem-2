@@ -55,7 +55,7 @@ func createScatter(xPointInitial: Double, yPointInitial: Double, energyInitial: 
         var isInWall = inWall(xPoint: currentX, yPoint: currentY, lowerX: lowerXBound, upperX: upperXBound, lowerY: lowerYBound, upperY: upperYBound)
         var energyLoss = initialEnergy * lossFactorAdjusted
         
-        var path: [(xPoint: Double, yPoint: Double, energy: Double)]
+        var path: [(xPoint: Double, yPoint: Double, energy: Double)]=[]
         path.append((xPoint: currentX, yPoint: currentY, energy: currentEnergy))
         
         
@@ -86,6 +86,7 @@ func createScatter(xPointInitial: Double, yPointInitial: Double, energyInitial: 
             }
         }
         
+        return path
     }
     
     

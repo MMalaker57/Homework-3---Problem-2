@@ -32,7 +32,10 @@ struct ContentView: View {
     @State var numPathsString = ""
     @State var numPaths = 1
     @State var pathsStructure: (pathList: [[(xPoint: Double, yPoint: Double, energy: Double)]], escapedRatio: Double)
-    @State var drawnPath = [(xPoint: Double, yPoint: Double, energy: Double)]()
+    @State var drawnPath: [(xPoint: Double, yPoint: Double, energy: Double)]
+    @State var pathToDraw = [(xPoint: Double, yPoint: Double)]()
+    @State var dummy = [(xPoint: 0.0, yPoint: 0.0)]
+    @State var escapedProportion = ""
     
     @ObservedObject var neutron_beam = Neutron_Scattering()
     
@@ -122,19 +125,26 @@ struct ContentView: View {
                         .padding(.top, 30)
                         .padding(.bottom)
                 }
-                
+                VStack{
+                    Text("Number of Paths Escaping Wall")
+                    TextField("",text: $escapedProportion)
+                        .padding(.horizontal)
+                        .frame(width: 150)
+                        .padding(.top, 30)
+                        .padding(.bottom)
+                }
                 
             }
             Button("Calculate", action: {Task.init{await pathsStructure = calculateMassOfPaths(passedNumberofPaths: numPaths)}})
                 .padding()
-//            Button("Draw", action: )
+            Button("Draw", action: {drawPath(path: drawnPath)})
         }
         Divider()
-//        drawingView(redLayer:)
-//                .padding()
-//                .aspectRatio(1, contentMode: .fit)
-//                .drawingGroup()
-            // Stop the window shrinking to zero.
+        drawingView(redLayer: $pathToDraw, blueLayer: $dummy)
+                .padding()
+                .aspectRatio(1, contentMode: .fit)
+                .drawingGroup()
+//             Stop the window shrinking to zero.
             Spacer()
         
     }
@@ -145,6 +155,9 @@ struct ContentView: View {
     
     //By a ton, I really mean a lot. Like 10^6
     func calculateMassOfPaths(passedNumberofPaths: Int) async-> (pathList: [[(xPoint: Double, yPoint: Double, energy: Double)]], escapedRatio: Double){
+        
+        pathsStructure.pathList = [] //Clear paths to allow new ones
+        pathsStructure.escapedRatio = 0.0
         var numberOfPaths = abs(passedNumberofPaths) //Never trust the user to return only positive numbers
         if numberOfPaths < 1{
             numberOfPaths = 1
@@ -171,19 +184,26 @@ struct ContentView: View {
         //After we have all of the paths, we need to determine how many escaped.
         var escaped = 0
         drawnPath = listOfPaths.last ?? [(0.0,0.0,0.0)]
+        
+        
         for i in listOfPaths{
             if i.last?.energy ?? 0.0 > 0.0{
                 escaped+=1
             }
         }
-        
+        escapedProportion = String(Double(escaped)/Double(numberOfPaths))
         return(pathList: listOfPaths, escapedRatio: Double(escaped)/Double(numberOfPaths))
     }
     
-    func drawPath(path: [(xPoint: Double, yPoint: Double)]){
-        
-        var pathToDraw = [(xPoint: Double, yPoint: Double)]()
+    func drawPath(path: [(xPoint: Double, yPoint: Double, energy: Double)])->Void{
+        pathToDraw.removeAll()
+        var path2: [(xPoint: Double, yPoint: Double)] = []
         for i in path{
+            path2.append((i.xPoint,i.yPoint))
+            
+        }
+        
+        for i in path2{
             pathToDraw.append((i.xPoint,i.yPoint))
             
         }
@@ -192,6 +212,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(pathsStructure: (pathList: [[(xPoint: 0.0, yPoint: 0.0, energy: 0.0)]], escapedRatio: 1.0))
+        ContentView(pathsStructure: (pathList: [[(xPoint: 0.0, yPoint: 0.0, energy: 0.0)]], escapedRatio: 1.0), drawnPath: [(xPoint: 0.0, yPoint: 0.0, energy: 0.0)])
     }
 }
