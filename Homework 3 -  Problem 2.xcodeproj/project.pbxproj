@@ -17,6 +17,10 @@
 		522DF45927B1A4D6009B33D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DF42F27B1A4D4009B33D9 /* ContentView.swift */; };
 		522DF45A27B1A4D6009B33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522DF43027B1A4D6009B33D9 /* Assets.xcassets */; };
 		522DF45B27B1A4D6009B33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522DF43027B1A4D6009B33D9 /* Assets.xcassets */; };
+		522DF46B27B1A508009B33D9 /* Neutron Scattering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DF46A27B1A508009B33D9 /* Neutron Scattering.swift */; };
+		522DF46C27B1A508009B33D9 /* Neutron Scattering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DF46A27B1A508009B33D9 /* Neutron Scattering.swift */; };
+		522DF55727BDF590009B33D9 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DF55627BDF590009B33D9 /* DrawingView.swift */; };
+		522DF55827BDF590009B33D9 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DF55627BDF590009B33D9 /* DrawingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		522DF44E27B1A4D6009B33D9 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522DF45227B1A4D6009B33D9 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		522DF45427B1A4D6009B33D9 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		522DF46A27B1A508009B33D9 /* Neutron Scattering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neutron Scattering.swift"; sourceTree = "<group>"; };
+		522DF55627BDF590009B33D9 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				522DF42E27B1A4D4009B33D9 /* Homework_3____Problem_2App.swift */,
+				522DF46A27B1A508009B33D9 /* Neutron Scattering.swift */,
 				522DF42F27B1A4D4009B33D9 /* ContentView.swift */,
 				522DF43027B1A4D6009B33D9 /* Assets.xcassets */,
+				522DF55627BDF590009B33D9 /* DrawingView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -300,7 +308,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				522DF45827B1A4D6009B33D9 /* ContentView.swift in Sources */,
+				522DF46B27B1A508009B33D9 /* Neutron Scattering.swift in Sources */,
 				522DF45627B1A4D6009B33D9 /* Homework_3____Problem_2App.swift in Sources */,
+				522DF55727BDF590009B33D9 /* DrawingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +319,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				522DF45927B1A4D6009B33D9 /* ContentView.swift in Sources */,
+				522DF46C27B1A508009B33D9 /* Neutron Scattering.swift in Sources */,
 				522DF45727B1A4D6009B33D9 /* Homework_3____Problem_2App.swift in Sources */,
+				522DF55827BDF590009B33D9 /* DrawingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

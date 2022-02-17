@@ -3,10 +3,10 @@
 import SwiftUI
 
 @main
-struct ___PARENTPACKAGENAME:identifier___App: App {
+struct neutron_Scattering: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(pathsStructure: (pathList: [[(xPoint: 0.0, yPoint: 0.0, energy: 0.0)]], escapedRatio: 1.0))
         }
     }
 }
