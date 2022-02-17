@@ -10,18 +10,20 @@ import SwiftUI
 struct drawingView: View {
     
     @Binding var redLayer : [(xPoint: Double, yPoint: Double)]
-    @Binding var blueLayer : [(xPoint: Double, yPoint: Double)]
+    @Binding var upperX: Double
+    @Binding var upperY: Double
+//    @Binding var blueLayer : [(xPoint: Double, yPoint: Double)]
     
     var body: some View {
     
         
         ZStack{
         
-            drawIntegral(drawingPoints: redLayer )
+            drawIntegral(upperXBound: upperX, upperYBound: upperY, drawingPoints: redLayer)
                 .stroke(Color.red)
             
-            drawIntegral(drawingPoints: blueLayer )
-                .stroke(Color.blue)
+//            drawIntegral(drawingPoints: blueLayer )
+//                .stroke(Color.blue)
         }
         .background(Color.white)
         .aspectRatio(1, contentMode: .fill)
@@ -32,12 +34,14 @@ struct drawingView: View {
 struct DrawingView_Previews: PreviewProvider {
     
     @State static var redLayer : [(xPoint: Double, yPoint: Double)] = [(-5.0, 5.0), (5.0, 5.0), (0.0, 0.0), (0.0, 5.0)]
+    @State static var upperX: Double = 10.0
+    @State static var upperY: Double = 10.0
     @State static var blueLayer : [(xPoint: Double, yPoint: Double)] = [(-5.0, -5.0), (5.0, -5.0), (4.5, 0.0)]
     
     static var previews: some View {
        
         
-        drawingView(redLayer: $redLayer, blueLayer: $blueLayer)
+        drawingView(redLayer: $redLayer, upperX: $upperX, upperY: $upperY)
             .aspectRatio(1, contentMode: .fill)
             //.drawingGroup()
            
@@ -48,7 +52,8 @@ struct DrawingView_Previews: PreviewProvider {
 
 struct drawIntegral: Shape {
     
-   
+    var upperXBound: Double
+    var upperYBound: Double
     let smoothness : CGFloat = 1.0
     var drawingPoints: [(xPoint: Double, yPoint: Double)]  ///Array of tuples
     
@@ -56,8 +61,11 @@ struct drawIntegral: Shape {
         
                
         // draw from the center of our rectangle
+        
+        
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        let scale = rect.width/2
+        let hScale = rect.width/upperXBound
+        let vScale = rect.height/upperYBound
         
 
         // Create the Path for the display
@@ -65,11 +73,17 @@ struct drawIntegral: Shape {
         var path = Path()
         
         for item in drawingPoints {
-            
-            path.addRect(CGRect(x: item.xPoint*Double(scale)+Double(center.x), y: item.yPoint*Double(scale)+Double(center.y), width: 5.0, height: 5.0 ))
-            
-            
+
+            path.addRect(CGRect(x: item.xPoint*Double(hScale), y: item.yPoint*Double(vScale), width: 2.0, height: 2.0 ))
+            path.addLine(to: CGPoint(x: item.xPoint*Double(hScale), y: item.yPoint*Double(vScale)))
+
+
+
+
         }
+        
+        
+
         
         return (path)
     }

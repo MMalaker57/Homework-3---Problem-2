@@ -52,7 +52,7 @@ struct ContentView: View {
                     TextField("",text: $upperXBoundString, onCommit: {upperXBound = Double(upperXBoundString) ?? 0})
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                     
                 
@@ -60,7 +60,7 @@ struct ContentView: View {
                     TextField("",text: $upperYBoundString, onCommit: {upperYBound = Double(upperYBoundString) ?? 0})
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                     
                 
@@ -72,7 +72,7 @@ struct ContentView: View {
                 TextField("",text: $beamXPositionString, onCommit: {beamXPosition = Double(beamXPositionString) ?? 0})
                     .padding(.horizontal)
                     .frame(width: 150)
-                    .padding(.top, 30)
+                    .padding(.top, 15)
                     .padding(.bottom)
                 }
                 
@@ -81,7 +81,7 @@ struct ContentView: View {
                     TextField("",text: $beamYPositionString, onCommit: {beamYPosition = Double(beamYPositionString) ?? 0})
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                     
                 }
@@ -92,7 +92,7 @@ struct ContentView: View {
                 TextField("",text: $beamEnergyString, onCommit: {beamEnergy = Double(beamEnergyString) ?? 0})
                     .padding(.horizontal)
                     .frame(width: 150)
-                    .padding(.top, 30)
+                    .padding(.top, 15)
                     .padding(.bottom)
                 }
                 
@@ -101,7 +101,7 @@ struct ContentView: View {
                     TextField("",text: $beamLossFactorString, onCommit: {beamLossFactor = Double(beamLossFactorString) ?? 0})
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                     
                 }
@@ -110,7 +110,7 @@ struct ContentView: View {
                 TextField("",text: $MFPString, onCommit: {MFP = Double(MFPString) ?? 0})
                     .padding(.horizontal)
                     .frame(width: 150)
-                    .padding(.top, 30)
+                    .padding(.top, 15)
                     .padding(.bottom)
                 }
             }
@@ -122,7 +122,7 @@ struct ContentView: View {
                     TextField("",text: $numPathsString, onCommit: {numPaths = Int(numPathsString) ?? 1})
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                 }
                 VStack{
@@ -130,7 +130,7 @@ struct ContentView: View {
                     TextField("",text: $escapedProportion)
                         .padding(.horizontal)
                         .frame(width: 150)
-                        .padding(.top, 30)
+                        .padding(.top, 15)
                         .padding(.bottom)
                 }
                 
@@ -140,7 +140,7 @@ struct ContentView: View {
             Button("Draw", action: {drawPath(path: drawnPath)})
         }
         Divider()
-        drawingView(redLayer: $pathToDraw, blueLayer: $dummy)
+        drawingView(redLayer: $pathToDraw, upperX: $upperXBound, upperY: $upperYBound)
                 .padding()
                 .aspectRatio(1, contentMode: .fit)
                 .drawingGroup()
