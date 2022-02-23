@@ -24,7 +24,7 @@ struct ContentView: View {
     @State var beamYPosition = 0.0
     
     @State var beamEnergyString = ""
-    @State var beamEnergy = 0.0
+    @State var beamEnergy = 100.0
     @State var beamLossFactorString = ""
     @State var beamLossFactor = 0.0
     @State var MFPString = ""
@@ -87,15 +87,7 @@ struct ContentView: View {
                 }
             }
             HStack{
-                VStack{
-                Text("Enter Beam Energy")
-                TextField("",text: $beamEnergyString, onCommit: {beamEnergy = Double(beamEnergyString) ?? 0})
-                    .padding(.horizontal)
-                    .frame(width: 150)
-                    .padding(.top, 15)
-                    .padding(.bottom)
-                }
-                
+                                
                 VStack{
                     Text("Enter Energy Loss Factor")
                     TextField("",text: $beamLossFactorString, onCommit: {beamLossFactor = Double(beamLossFactorString) ?? 0})
